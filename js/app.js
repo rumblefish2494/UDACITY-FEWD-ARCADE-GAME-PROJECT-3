@@ -11,7 +11,7 @@ var Enemy = function (speed, xPosition, row) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-}
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -23,12 +23,12 @@ Enemy.prototype.update = function(dt) {
     var bad = true;
     collisionDetection(this, bad); //!! check for colision between player and bug
     scrollControl(this, time);
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -49,7 +49,7 @@ var Player = function() {
     //!! all images are 101x171 px!!
     this.radius = 30;
     this.sprite = 'images/char-cat-girl.png';
-}
+};
 // !! created empty update method - need to finish 4/13/15
 Player.prototype.update = function() {
     /*!!!I don't see the purpose of this function
@@ -58,13 +58,13 @@ Player.prototype.update = function() {
     the enemy and the player is redundant and unneccessary...what other
     purpose should the update fucntion serve? I could pass data from the
     handleInput function but that seems silly.*/
-}
+};
 
 // method for resetting player position to start if colide with enemy
 Player.prototype.reset = function() {
     this.x = 200;
     this.y = 410;
-}
+};
 
 // score keeping
 Player.prototype.scoreCalc = function(num) {
@@ -76,7 +76,7 @@ Player.prototype.scoreCalc = function(num) {
         addDifficulty();
         addBonus(this);
     };
-}
+};
 
 // !! bh create handleInput function for player to move 4/14/15
 // !! bh there is probably a better way to do this than this long if else stuff
@@ -93,17 +93,17 @@ Player.prototype.handleInput = function(key){
     } else if ( key == 'down') {
         if( this.y + this.speed < this.bottom){
         this.y = this.y + this.speed;
-        }
+        };
     } else if ( key == 'left') {
         if( this.x - this.speed > this.left){
         this.x = this.x - this.speed;
-        }
+        };
     } else if ( key == 'right') {
         if( this.x + this.speed < this.right){
         this.x = this.x + this.speed;
         };
     };
-}
+};
 // !! bh create empty render method - need to finish 4/13/15
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y); //xPosition, yPosition?
@@ -113,7 +113,7 @@ Player.prototype.render = function() {
     ctx.font = "36px serif";
     ctx.fillText("Score: " + this.score, 300, 50);
 
-}
+};
 
 //!!4/19/15 attempt to improve collision detection code by
 //!!creating a function that gets called by each non player entity
@@ -136,7 +136,7 @@ var collisionDetection = function(obj, boolean) {
             player.reset();
         };
     };
-}
+};
 var scrollControl = function(obj, time) {
 
     if( obj.x > 500){ //!!reset to left side of screen if at end
@@ -144,19 +144,19 @@ var scrollControl = function(obj, time) {
     } else {
         obj.x = obj.x + time * obj.speed;
     };
-}
+};
 var addDifficulty = function() {
     for ( i = 0; i < allEnemies.length; i++) {
         //console.log(allEnemies[i].speed);
         allEnemies[i].speed += 20;
         //console.log(allEnemies[i].speed);
-    }
+    };
     bonus.speed += 10;
-}
+};
 
 var addBonus = function(obj){
   obj.bonusSwitch = true;
-}
+};
 
 var Bonus = function() {
     this.x = 0;
@@ -164,7 +164,7 @@ var Bonus = function() {
     this.speed = 5;
     this.radius = 30;
     this.sprite = 'images/Star.png';
-}
+};
 
 Bonus.prototype.update = function(dt) {
     //console.log("calling bonus.update()");
@@ -173,14 +173,14 @@ Bonus.prototype.update = function(dt) {
     var bad = false;
     collisionDetection(this, bad);
     };
-}
+};
 
 Bonus.prototype.render = function() {
     if (player.bonusSwitch == true) {
         console.log("bonus");
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     };
-}
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
