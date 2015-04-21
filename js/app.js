@@ -52,11 +52,11 @@ var Player = function() {
 }
 // !! created empty update method - need to finish 4/13/15
 Player.prototype.update = function() {
-    /*!!!I don't see the purpose of this function 
+    /*!!!I don't see the purpose of this function
     player movement is handled by the handleInput function which
     was required also for the assignment. collision detection for both
-    the enemy and the player is redundant and unneccessary...what other 
-    purpose should the update fucntion serve? I could pass data from the 
+    the enemy and the player is redundant and unneccessary...what other
+    purpose should the update fucntion serve? I could pass data from the
     handleInput function but that seems silly.*/
 }
 
@@ -112,10 +112,10 @@ Player.prototype.render = function() {
     ctx.fillStyle = 'black';
     ctx.font = "36px serif";
     ctx.fillText("Score: " + this.score, 300, 50);
-    
+
 }
 
-//!!4/19/15 attempt to improve collision detection code by 
+//!!4/19/15 attempt to improve collision detection code by
 //!!creating a function that gets called by each non player entity
 //!!switch is true if colided with a bad thing, false if colided with a good thing
 //!!colision detection logic using Mozilla Circle Collision logic from MDN
